@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-    const filepath = 'python/test.py';
+    const filepath = 'python';
     const spawn = require("child_process").spawn;
     const pyprocess = spawn('python3',[filepath, '-l']);
 
