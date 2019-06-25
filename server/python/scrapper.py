@@ -13,10 +13,15 @@ for x in ulit:
     arr.extend([y.get_attribute_list('href') for y in x.find_all('a')][0])
 
 arr.reverse()
+toupdate = []
+for x in arr:
+    toupdate.extend([int(s) for s in x.split('-') if s.isdigit()])
+x = toupdate.index(int(sys.argv[2]) + 1)
+
 tot = []
 titles = []
 
-for c in arr[0:4]:
+for c in arr[x:]:
     chap = requests.get(c)
     chapsoup = bs(chap.content, 'html.parser')
     chacont = chapsoup.div.select('.cha-words p')
@@ -26,7 +31,7 @@ for c in arr[0:4]:
 
 final = dict(zip(titles,tot))
 
-exportfile = json.dumps(final)
+exportfile = json.dumps({"chapters":final, "last-chap":toupdate[-1]})
 
 print(exportfile)
 
