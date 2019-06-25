@@ -28,8 +28,6 @@ final = dict(zip(titles,tot))
 
 exportfile = json.dumps(final)
 
-f= open(sys.argv[1][27:-1]+'.json',"w+")
+print(exportfile)
 
-f.write(exportfile)
-
-f.close
+sys.stdout.flush()
