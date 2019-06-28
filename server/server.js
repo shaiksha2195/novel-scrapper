@@ -13,7 +13,7 @@ var db = require('knex')({
   });
 
 
-app.get('/novel/:link', (req, res) => {
+app.get('/add/:link', (req, res) => {
     
     const filepath = 'python/scrapper.py';
     const spawn = require("child_process").spawn;
@@ -27,7 +27,7 @@ app.get('/novel/:link', (req, res) => {
     res.send("Adding the Novel!");
 });
   
-app.get('/get/:link/:chap', (req, res) => {
+app.get('/:link/:chap', (req, res) => {
   let jsonfile = require('./python/novels/' + req.params.link.toString() +'.json');
   let num = parseInt(req.params.chap) - 1;
   try{
