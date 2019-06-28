@@ -43,9 +43,16 @@ app.get('/get/:link/:chap', (req, res) => {
 
 app.get('/getlist', (req, res) => {
   const folder = '../novels';
-
+  let list = '';
+  let i = 0;
   fs.readdir(folder, (err, files) => {
-    res.json({"files" : files});
+    files.forEach(el => {
+      if (i == 0)
+        i++;
+      else
+        list += '<li><a href="/novels/' + el.split('.')[0] + '" style="text-decoration:none;color:black">' + el.split('.')[0] + '</a></li>';
+    });
+    res.send('<ul style="list-style:none">' + list + '</ul>');
   });
 });
 
